@@ -31,25 +31,25 @@ public class UsuarioController {
 	private UsuarioService service;
 	
 	@Autowired
-	private UsuarioRepository repository;
+	private UsuarioRepository usuarioRepository;
 
 	@GetMapping("/all")
 	public ResponseEntity <List<Usuario>> getAll() {
-		return ResponseEntity.ok(repository.findAll());
+		return ResponseEntity.ok(usuarioRepository.findAll());
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Usuario> getById(@PathVariable long id) {
-		return repository.findById(id)
-			.map(resp -> ResponseEntity.ok(resp))
+	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
+		return usuarioRepository.findById(id)
+			.map(resposta -> ResponseEntity.ok(resposta))
 			.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping("/logar")
-	public ResponseEntity<UsuarioLogin> autenticationUsuario(
+	public ResponseEntity<UsuarioLogin> authenticationUsuario(
 	@RequestBody Optional<UsuarioLogin> usuario) {		
 		return service.logarUsuario(usuario)
-			.map(resp -> ResponseEntity.ok(resp))
+			.map(resposta -> ResponseEntity.ok(resposta))
 			.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 
@@ -57,7 +57,7 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> postUsuario(
 	@Valid @RequestBody Usuario usuario) {		
 		return service.cadastrarUsuario(usuario)
-		.map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
+		.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(resposta))
 		.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());		
 	}
 	
@@ -65,8 +65,7 @@ public class UsuarioController {
 	public ResponseEntity<Usuario> putUsuario(
 	@Valid @RequestBody Usuario usuario){		
 		return service.atualizarUsuario(usuario)
-			.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
+			.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
 			.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
-	
 }
