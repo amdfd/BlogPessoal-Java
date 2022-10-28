@@ -1,4 +1,4 @@
-<h1>Blog Pessoal 📝</h1>
+<h1>Blog Pessoal - Back End 📝</h1>
 Esse é meu projeto do Bloco II do bootcamp de Pessoa Desenvolvedora Web Full Stack da Generation. O objetivo foi criar o CRUD completo de um blog pessoal utilizando o Spring Boot e o MySQL, incluindo uma camada de segurança para o usuário. Além disso, também fiz testes com o Insomnia, JUnit e realizei o deploy no Heroku.
 
 <h2>Como visualizar o projeto:</h2>
